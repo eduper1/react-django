@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import Form from "./componets/Forms";
 import Todo from "./componets/Tod";
+import FilterBtn from "./componets/FilterBtns";
 import React from "react";
 
 
@@ -25,10 +26,12 @@ function App() {
   return (
     <div className="container">
       <Form/>
+      <FilterBtn />
       <ul
         role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
+
           <Todo todos={todos} />
         
       </ul>
