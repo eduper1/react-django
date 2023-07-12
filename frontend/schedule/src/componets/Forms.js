@@ -1,14 +1,33 @@
+import { useState } from "react";
 import React from "react";
 
 function Form(props){
+  const [FormData, setFormData] = useState({
+    title:'',
+    description:'',
+    date:'',
+  });
+
   function handleSubmit(e){
     e.preventDefault();
-    props.addSchedule();
+    console.log("Submitted.")
+    props.addSchedule(FormData);
+
+    setFormData({
+    title: '',
+    description: '',
+    date: '',
+  });
   }
 
-  function handleChanges(e){
-    console.log(e.target.value);
-  }
+  function handleInputChanges(e){
+    const{name, value} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name] : value,
+    }));
+    // console.log(e.target.value);
+  };
 
     return(
         <div className="container">
@@ -20,15 +39,15 @@ function Form(props){
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="title">Title:</label>
-                  <input type="text" className="form-control" id="title" onChange={handleChanges} />
+                  <input type="text" name="title" value={FormData.title} className="form-control" id="title" onChange={handleInputChanges} />
                 </div>
                 <div className="form-group">
                   <label htmlFor="description">Description:</label>
-                  <textarea className="form-control" id="description" rows="3"onChange={handleChanges} ></textarea>
+                  <textarea className="form-control" name="description" value={FormData.description} id="description" rows="3"onChange={handleInputChanges} ></textarea>
                 </div>
                 <div className="form-group">
                   <label htmlFor="dueDate">Due Date:</label>
-                  <input type="date" className="form-control" id="dueDate" onChange={handleChanges} />
+                  <input type="date" name="date" value={FormData.date} className="form-control" id="dueDate" onChange={handleInputChanges} />
                 </div>
                 <button type="submit" className="btn btn-primary" >Submit</button>
               </form>

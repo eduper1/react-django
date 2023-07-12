@@ -8,9 +8,6 @@ import React, {useState} from "react";
 
 
 function App() {
-  function addSchedule (){
-    console.log(' Submitted!');
-  }
   // List of schedule
   const initialTodos = [
     {
@@ -28,11 +25,16 @@ function App() {
       isComplete: true,
     },
   ];
+  
+  const [todos, settodos] = useState(initialTodos);
+  
+  function addSchedule (data){
+    const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
+    settodos([...todos, newTodo]);
+  }
 
-  const [todos] = useState(initialTodos);
-    
-    const TaskList = todos.map((todo)=> (
-      <Todo
+  const TaskList = todos.map((todo)=> (
+    <Todo
       id={todo.id}
       title={todo.title}
       description={todo.description}
