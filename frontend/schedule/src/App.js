@@ -1,12 +1,15 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import Form from "./componets/Forms";
 import Todo from "./componets/Tod";
 import FilterBtn from "./componets/FilterBtns";
-import React from "react";
+import React, {useState} from "react";
 
 
 function App() {
-  const todos = [
+  // eslint-disable-next-line no-unused-vars
+  const initialTodos = [
     {
       id: 1,
       title: 'Task 1',
@@ -23,6 +26,19 @@ function App() {
     },
     // Add more todo items as needed
   ];
+
+  const [todos] = useState(initialTodos);
+    
+    const TaskList = todos.map((todo)=> (
+      <Todo
+      id={todo.id}
+      title={todo.title}
+      description={todo.description}
+      dueDate={todo.dueDate}
+      isComplete={todo.isComplete}
+      />
+    ));
+
   return (
     <div className="container">
       <Form/>
@@ -31,8 +47,7 @@ function App() {
         role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
-
-          <Todo todos={todos} />
+          {TaskList}
         
       </ul>
     </div>

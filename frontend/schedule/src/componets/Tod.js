@@ -4,16 +4,16 @@ function Todo(props){
     return(
         <div className="container">
       <h1>Todo List</h1>
-      {props.todos.map((todo) => (
-        <div className="card mb-3" key={todo.id}>
+      {/* {props.tod.map((todo) => ( */}
+        <div className="card mb-3" key={props.id}>
           <div className="card-body">
-            <h5 className="card-title">{todo.title}</h5>
-            <p className="card-text">{todo.description}</p>
-            <p className="card-text">Due Date: {todo.dueDate}</p>
-            <button className="btn btn-primary" disabled={todo.isComplete}>Complete</button>
+            <h5 className="card-title">{props.title}</h5>
+            <p className="card-text">{props.description}</p>
+            <p className="card-text">Due Date: {props.dueDate}</p>
+            <button className="btn btn-primary" disabled={props.isComplete}>Complete</button>
           </div>
         </div>
-      ))}
+      {/* ))} */}
     </div>
     );
 }
