@@ -8,7 +8,10 @@ import React, {useState} from "react";
 
 
 function App() {
-  // eslint-disable-next-line no-unused-vars
+  function addSchedule (){
+    console.log(' Submitted!');
+  }
+  // List of schedule
   const initialTodos = [
     {
       id: 1,
@@ -24,7 +27,6 @@ function App() {
       dueDate: '2023-07-06',
       isComplete: true,
     },
-    // Add more todo items as needed
   ];
 
   const [todos] = useState(initialTodos);
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <div className="container">
-      <Form/>
+      <Form addSchedule={addSchedule} />
       <FilterBtn />
       <ul
         role="list"
