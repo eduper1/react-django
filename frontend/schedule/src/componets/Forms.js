@@ -19,10 +19,10 @@ function Form(props){
     e.preventDefault();
 
     // Check if any field is empty
-    if (!FormData.title || !FormData.description || !FormData.date) {
-      alert("Please fill in all fields.");
-      return;
-    }
+    if (!FormData.title.trim() || !FormData.description.trim() || !FormData.date.trim()) {
+    alert("Please fill in all fields.");
+    return;
+  }
     
     console.log("Submitted.")
     props.addSchedule(FormData);
