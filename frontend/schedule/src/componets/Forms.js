@@ -55,7 +55,7 @@ function Form(props){
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Add Task</h5>
+              <h5 className="card-title">Make Schedule</h5>
               <form onSubmit={handleSubmit} className={isFormSubmitted ? "was-validated" : ""}>
         {isFormSubmitted && (
           <div className="alert alert-success" role="alert">
