@@ -47,6 +47,7 @@ function App() {
     <div className="container">
       <Form addSchedule={addSchedule} />
       <FilterBtn />
+      <h1 className="row justify-content-center" >Schedule</h1>
       <ul
         role="list"
         className="todo-list stack-large stack-exception"
