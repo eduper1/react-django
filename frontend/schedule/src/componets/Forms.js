@@ -3,6 +3,10 @@ import React from "react";
 
 function Form(props){
   const today = new Date().toISOString().slice(0, 10);
+  const maxDate = new Date();
+  maxDate.setDate(maxDate.getDate() + 10); // Add 10 days to the current date
+  const maxDateString = maxDate.toISOString().slice(0, 10);
+
   const [FormData, setFormData] = useState({
     title:'',
     description:'',
@@ -48,7 +52,7 @@ function Form(props){
                 </div>
                 <div className="form-group">
                   <label htmlFor="dueDate">Due Date:</label>
-                  <input type="date" name="date" value={FormData.date} className="form-control" id="dueDate" onChange={handleInputChanges} />
+                  <input type="date" name="date" value={FormData.date} className="form-control" id="dueDate" min={today} max={maxDateString} onChange={handleInputChanges} />
                 </div>
                 <button type="submit" className="btn btn-primary" >Submit</button>
               </form>
