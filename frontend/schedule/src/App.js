@@ -34,6 +34,16 @@ function App() {
     settodos([...todos, newTodo]);
   }
 
+  function toggleCompleteBtn (id){
+    const updateSchedule = todos.map((schedule) => {
+      if (id === schedule.id){
+        return {...schedule, isComplete: !schedule.isComplete};
+      }
+      return schedule;
+    });
+    settodos(updateSchedule);
+  }
+
   const TaskList = todos.map((todo)=> (
     <Todo
       id={todo.id}
@@ -41,6 +51,7 @@ function App() {
       description={todo.description}
       dueDate={todo.dueDate}
       isComplete={todo.isComplete}
+      toggleCompleteBtn={toggleCompleteBtn}
       />
     ));
 
