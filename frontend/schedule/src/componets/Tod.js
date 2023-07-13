@@ -3,7 +3,6 @@ import React from "react";
 function Todo(props){
     return(
         <div className="container">
-      <h1>Todo List</h1>
       {/* {props.tod.map((todo) => ( */}
         <div className="card mb-3" key={props.id}>
           <div className="card-body">
