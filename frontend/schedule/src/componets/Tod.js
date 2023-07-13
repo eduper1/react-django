@@ -3,7 +3,10 @@ import React from "react";
 function Todo(props){
     return(
         <div className="container">
-      {/* {props.tod.map((todo) => ( */}
+          <div className="row justify-content-center">
+
+        {/* <div className="col-md-6"> */}
+
         <div className="card mb-3" key={props.id}>
           <div className="card-body">
             <h5 className="card-title">{props.title}</h5>
@@ -12,7 +15,8 @@ function Todo(props){
             <button className="btn btn-primary" disabled={props.isComplete}>Complete</button>
           </div>
         </div>
-      {/* ))} */}
+          {/* </div> */}
+        </div>
     </div>
     );
 }

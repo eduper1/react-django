@@ -51,8 +51,8 @@ function Form(props){
 
     return(
         <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
+      <div className="row justify-content-center mt-3">
+        <div className="col-md-4">
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Make Schedule</h5>

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-redundant-roles */
+//Todo debug view point and align components
 import Form from "./componets/Forms";
 import Todo from "./componets/Tod";
 import FilterBtn from "./componets/FilterBtns";
@@ -48,13 +49,17 @@ function App() {
       <Form addSchedule={addSchedule} />
       <FilterBtn />
       <h1 className="row justify-content-center" >Schedule</h1>
-      <ul
-        role="list"
-        className="todo-list stack-large stack-exception"
-        aria-labelledby="list-heading">
-          {TaskList}
-        
-      </ul>
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <ul
+            role="list"
+            className="todo-list stack-large stack-exception"
+            aria-labelledby="list-heading">
+              {TaskList}
+            
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
