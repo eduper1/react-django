@@ -2,10 +2,11 @@ import { useState } from "react";
 import React from "react";
 
 function Form(props){
+  const today = new Date().toISOString().slice(0, 10);
   const [FormData, setFormData] = useState({
     title:'',
     description:'',
-    date:'',
+    date:today,
   });
 
   function handleSubmit(e){
@@ -16,7 +17,7 @@ function Form(props){
     setFormData({
     title: '',
     description: '',
-    date: '',
+    date: today,
   });
   }
 
