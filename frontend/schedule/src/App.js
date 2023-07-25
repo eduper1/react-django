@@ -45,7 +45,7 @@ function App() {
     });
     settodos(updateSchedule);
   }
-  const filertActive = todos.filter(todo => todo.isComplete === false);
+  const filerActive = todos.filter(todo => todo.isComplete === false);
   // const TaskList = todos.map((todo)=> (
   //   <Todo
   //     id={todo.id}
@@ -70,7 +70,7 @@ function App() {
             aria-labelledby="list-heading">
               {/* {TaskList} */}
             {/* Display linked information based on activeButton */}
-            {isDisplayed === 'active' && filertActive.map(todo => (
+            {isDisplayed === 'active' && filerActive.map(todo => (
               <div>
                 <Todo
                   id={todo.id}
