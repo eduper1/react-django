@@ -47,6 +47,9 @@ function App() {
   }
   const filerActive = todos.filter(todo => todo.isComplete === false);
   const filerComplete = todos.filter(todo => todo.isComplete === true);
+    // Get the current date in ISO string format
+  const currentDate = new Date().toISOString().slice(0, 10);
+  const filerDueDate = todos.filter(todo => todo.isComplete === false && todo.dueDate < currentDate); 
   // const TaskList = todos.map((todo)=> (
   //   <Todo
   //     id={todo.id}
@@ -96,7 +99,17 @@ function App() {
                   toggleCompleteBtn={toggleCompleteBtn}
                   />
               </div>))}
-            {isDisplayed === 'duePast' && <div>Due Past Todos</div>}
+            {isDisplayed === 'duePast' && filerDueDate.map(todo => (
+              <div>
+                <Todo
+                  id={todo.id}
+                  title={todo.title}
+                  description={todo.description}
+                  dueDate={todo.dueDate}
+                  isComplete={todo.isComplete}
+                  toggleCompleteBtn={toggleCompleteBtn}
+                  />
+              </div>))}
           </ul>
         </div>
       </div>
