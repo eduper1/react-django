@@ -35,7 +35,7 @@ function App() {
     const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
     settodos([...todos, newTodo]);
   }
-
+// TODO debug toggleCompleteBtn and related BTN HTML in Tod.js
   function toggleCompleteBtn (id){
     const updateSchedule = todos.map((schedule) => {
       if (id === schedule.id){
