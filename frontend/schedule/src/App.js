@@ -45,10 +45,10 @@ function App() {
     });
     settodos(updateSchedule);
   }
-  const filerActive = todos.filter(todo => todo.isComplete === false);
-  const filerComplete = todos.filter(todo => todo.isComplete === true);
     // Get the current date in ISO string format
   const currentDate = new Date().toISOString().slice(0, 10);
+  const filerActive = todos.filter(todo => todo.isComplete === false && todo.dueDate > currentDate);
+  const filerComplete = todos.filter(todo => todo.isComplete === true);
   const filerDueDate = todos.filter(todo => todo.isComplete === false && todo.dueDate < currentDate); 
   // const TaskList = todos.map((todo)=> (
   //   <Todo
