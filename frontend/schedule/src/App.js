@@ -46,6 +46,7 @@ function App() {
     settodos(updateSchedule);
   }
   const filerActive = todos.filter(todo => todo.isComplete === false);
+  const filerComplete = todos.filter(todo => todo.isComplete === true);
   // const TaskList = todos.map((todo)=> (
   //   <Todo
   //     id={todo.id}
@@ -84,7 +85,17 @@ function App() {
               
               ))}
             
-            {isDisplayed === 'complete' && <div>Complete Todos</div>}
+            {isDisplayed === 'complete' && filerComplete.map(todo => (
+              <div>
+                <Todo
+                  id={todo.id}
+                  title={todo.title}
+                  description={todo.description}
+                  dueDate={todo.dueDate}
+                  isComplete={todo.isComplete}
+                  toggleCompleteBtn={toggleCompleteBtn}
+                  />
+              </div>))}
             {isDisplayed === 'duePast' && <div>Due Past Todos</div>}
           </ul>
         </div>
