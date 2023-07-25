@@ -45,17 +45,17 @@ function App() {
     });
     settodos(updateSchedule);
   }
-
-  const TaskList = todos.map((todo)=> (
-    <Todo
-      id={todo.id}
-      title={todo.title}
-      description={todo.description}
-      dueDate={todo.dueDate}
-      isComplete={todo.isComplete}
-      toggleCompleteBtn={toggleCompleteBtn}
-      />
-    ));
+  const filertActive = todos.filter(todo => todo.isComplete === false);
+  // const TaskList = todos.map((todo)=> (
+  //   <Todo
+  //     id={todo.id}
+  //     title={todo.title}
+  //     description={todo.description}
+  //     dueDate={todo.dueDate}
+  //     isComplete={todo.isComplete}
+  //     toggleCompleteBtn={toggleCompleteBtn}
+  //     />
+  //   ));
 
   return (
     <div className="container">
@@ -68,9 +68,22 @@ function App() {
             role="list"
             className="todo-list stack-large stack-exception"
             aria-labelledby="list-heading">
-              {TaskList}
+              {/* {TaskList} */}
             {/* Display linked information based on activeButton */}
-            {isDisplayed === 'active' && <div>Active Todos</div>}
+            {isDisplayed === 'active' && filertActive.map(todo => (
+              <div>
+                <Todo
+                  id={todo.id}
+                  title={todo.title}
+                  description={todo.description}
+                  dueDate={todo.dueDate}
+                  isComplete={todo.isComplete}
+                  toggleCompleteBtn={toggleCompleteBtn}
+                  />
+              </div>
+              
+              ))}
+            
             {isDisplayed === 'complete' && <div>Complete Todos</div>}
             {isDisplayed === 'duePast' && <div>Due Past Todos</div>}
           </ul>
