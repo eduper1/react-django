@@ -28,6 +28,8 @@ function App() {
   ];
   
   const [todos, settodos] = useState(initialTodos);
+  const [isDisplayed, setIsDisplayed] = useState('active');
+
   
   function addSchedule (data){
     const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
@@ -58,7 +60,7 @@ function App() {
   return (
     <div className="container">
       <Form addSchedule={addSchedule} />
-      <FilterBtn />
+      <FilterBtn isDisplayed={isDisplayed} setIsDisplayed={setIsDisplayed}/>
       <h1 className="row justify-content-center" >Schedule</h1>
       <div className="row justify-content-center">
         <div className="col-md-6">
@@ -67,7 +69,10 @@ function App() {
             className="todo-list stack-large stack-exception"
             aria-labelledby="list-heading">
               {TaskList}
-            
+            {/* Display linked information based on activeButton */}
+            {isDisplayed === 'active' && <div>Active Todos</div>}
+            {isDisplayed === 'complete' && <div>Complete Todos</div>}
+            {isDisplayed === 'duePast' && <div>Due Past Todos</div>}
           </ul>
         </div>
       </div>
