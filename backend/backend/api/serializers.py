@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import TodoItem
+from schedule.models import TodoItem
 
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
