@@ -6,7 +6,7 @@ class TodoItem(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    dueDate = models.DateTimeField(blank=True)
+    dueDate = models.DateField(blank=False)
     isCompleted = models.BooleanField(default=False)
 
     def __str__(self):
