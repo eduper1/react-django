@@ -10,22 +10,30 @@ import React, {useState} from "react";
 
 function App() {
   // List of schedule
-  const initialTodos = [
-    {
-      id: 1,
-      title: 'Task 1',
-      description: 'Description 1',
-      dueDate: '2023-07-05',
-      isComplete: false,
-    },
-    {
-      id: 2,
-      title: 'Task 2',
-      description: 'Description 2',
-      dueDate: '2023-07-06',
-      isComplete: true,
-    },
-  ];
+  const [initialTodos, setinitialTodos] = useState([
+    // {
+    //   id: 1,
+    //   title: 'Task 1',
+    //   description: 'Description 1',
+    //   dueDate: '2023-07-05',
+    //   isComplete: false,
+    // },
+    // {
+    //   id: 2,
+    //   title: 'Task 2',
+    //   description: 'Description 2',
+    //   dueDate: '2023-07-06',
+    //   isComplete: true,
+    // },
+  ]);
+  // console.log(initialTodos);
+  fetch('http://127.0.0.1:8001/schedule/api')
+  .then(response => response.json())
+  .then(data=> {
+    console.log(data);
+    setinitialTodos(data)
+  })
+  .catch(error=>console.log(error))
   
   const [todos, settodos] = useState(initialTodos);
   const [isDisplayed, setIsDisplayed] = useState('active');
@@ -50,22 +58,13 @@ function App() {
   const filerActive = todos.filter(todo => todo.isComplete === false && todo.dueDate > currentDate);
   const filerComplete = todos.filter(todo => todo.isComplete === true);
   const filerDueDate = todos.filter(todo => todo.isComplete === false && todo.dueDate < currentDate); 
-  // const TaskList = todos.map((todo)=> (
-  //   <Todo
-  //     id={todo.id}
-  //     title={todo.title}
-  //     description={todo.description}
-  //     dueDate={todo.dueDate}
-  //     isComplete={todo.isComplete}
-  //     toggleCompleteBtn={toggleCompleteBtn}
-  //     />
-  //   ));
+
 
   return (
     <div className="container">
+      <h1 className="row justify-content-center" >Schedule</h1>
       <Form addSchedule={addSchedule} />
       <FilterBtn isDisplayed={isDisplayed} setIsDisplayed={setIsDisplayed}/>
-      <h1 className="row justify-content-center" >Schedule</h1>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <ul
