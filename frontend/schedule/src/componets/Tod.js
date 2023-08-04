@@ -12,7 +12,7 @@ function Todo(props){
             <h5 className="card-title">{props.title}</h5>
             <p className="card-text">{props.description}</p>
             <p className="card-text">Due Date: {props.dueDate}</p>
-            <button className="btn btn-primary" disabled={props.isComplete} onClick={()=> props.toggleCompleteBtn(props.id)} >{!props.isComplete ? "Progress":"Completed"}</button>
+            <button className="btn btn-primary" disabled={props.isCompleted} onClick={()=> props.toggleCompleteBtn(props.id)} >{!props.isComplete ? "Progress":"Completed"}</button>
           </div>
         </div>
           {/* </div> */}
