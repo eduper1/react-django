@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable no-use-before-define */
 /* eslint-disable jsx-a11y/no-redundant-roles */
@@ -15,16 +16,19 @@ function App() {
   const [isDisplayed, setIsDisplayed] = useState('active');
 
     // useEffect hook
-  useEffect(() =>{
-    fetch('http://127.0.0.1:8000/schedule/api')
-    .then(response => response.json())
-    .then(data=> {
-      // console.log(data);
-      settodos(data);
-    })
-    .catch(error=>console.log(error))
-    
-  },[])
+  function readApi(){
+
+    useEffect(() =>{
+      fetch('http://127.0.0.1:8000/schedule/api')
+      .then(response => response.json())
+      .then(data=> {
+        // console.log(data);
+        settodos(data);
+      })
+      .catch(error=>console.log(error))
+      
+    },[])
+  }
   
 
   
@@ -47,7 +51,8 @@ function App() {
     .then(data => {
       // Assuming that 'data' is the newly created schedule from the API
       // Add the new schedule to the existing 'todos' array using the 'settodos' function
-      settodos([...todos, data]);
+      readApi();
+      // settodos([...todos, data]);
     })
     .catch(error => console.log(error));
     // settodos([...todos, newTodo]);
