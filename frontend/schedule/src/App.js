@@ -29,8 +29,28 @@ function App() {
 
   
   function addSchedule (data){
-    const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
-    settodos([...todos, newTodo]);
+    // const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
+    fetch('http://127.0.0.1:8000/schedule/api', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      title: data.title,
+      description: data.description,
+      created_at: new Date().toLocaleString(),
+      dueDate: data.dueDate,
+      isCompleted: false,
+    }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Assuming that 'data' is the newly created schedule from the API
+      // Add the new schedule to the existing 'todos' array using the 'settodos' function
+      settodos([...todos, data]);
+    })
+    .catch(error => console.log(error));
+    // settodos([...todos, newTodo]);
   }
 // TODO debug toggleCompleteBtn and related BTN HTML in Tod.js
   function toggleCompleteBtn (id){
