@@ -16,25 +16,27 @@ function App() {
   const [isDisplayed, setIsDisplayed] = useState('active');
 
     // useEffect hook
-  function readApi(){
-
     useEffect(() =>{
-      fetch('http://127.0.0.1:8000/schedule/api')
-      .then(response => response.json())
-      .then(data=> {
-        // console.log(data);
-        settodos(data);
-      })
-      .catch(error=>console.log(error))
-      
+      // Initial fetch
+      readApi();
     },[])
+
+
+  function readApi(){
+    fetch('http://127.0.0.1:8002/schedule/api')
+    .then(response => response.json())
+    .then(data=> {
+      // console.log(data);
+      settodos(data);
+    })
+    .catch(error=>console.log(error))
   }
   
 
   
   function addSchedule (data){
     // const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
-    fetch('http://127.0.0.1:8000/schedule/api', {
+    fetch('http://127.0.0.1:800/schedule/api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
