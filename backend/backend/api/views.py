@@ -16,7 +16,10 @@ def todo_list(request):
 
     elif request.method == 'POST':
         serializer = TodoSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+        else:
+            print(serializer.errors)  # Log validation errors
+            return Response(serializer.errors, status=400)
