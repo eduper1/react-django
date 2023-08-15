@@ -23,7 +23,7 @@ function App() {
 
 
   function readApi(){
-    fetch('http://127.0.0.1:8002/schedule/api')
+    fetch('http://127.0.0.1:8000/schedule/api')
     .then(response => response.json())
     .then(data=> {
       // console.log(data);
@@ -36,7 +36,7 @@ function App() {
   
   function addSchedule (data){
     // const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
-    fetch('http://127.0.0.1:800/schedule/api', {
+    fetch('http://127.0.0.1:8000/schedule/api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function App() {
     body: JSON.stringify({
       title: data.title,
       description: data.description,
-      created_at: new Date().toLocaleString(),
+      // created_at: new Date().toLocaleString(),
       dueDate: data.dueDate,
       isCompleted: false,
     }),
