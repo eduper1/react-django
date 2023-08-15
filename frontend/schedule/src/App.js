@@ -36,6 +36,7 @@ function App() {
   
   function addSchedule (data){
     // const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
+    console.log(data);
     fetch('http://127.0.0.1:8000/schedule/api', {
     method: 'POST',
     headers: {
@@ -45,7 +46,7 @@ function App() {
       title: data.title,
       description: data.description,
       // created_at: new Date().toLocaleString(),
-      dueDate: data.dueDate,
+      dueDate: data.date,
       isCompleted: false,
     }),
   })
