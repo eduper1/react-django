@@ -37,7 +37,7 @@ function App() {
   function addSchedule (data){
     // const newTodo = {id:'id', title:data.title, description:data.description, dueDate:data.date, isComplete: false };
     console.log(data);
-    fetch('http://127.0.0.1:8000/schedule/api', {
+    fetch('http://127.0.0.1:8000/schedule/api/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -87,9 +87,23 @@ function App() {
 }
 
   function handleDelete(id){
-    console.log("click to delete");
-    const RemainingTodos = todos.filter((todo) => id !== todo.id);
-    settodos(RemainingTodos);
+    // console.log("click to delete");
+    // const RemainingTodos = todos.filter((todo) => id !== todo.id);
+    // settodos(RemainingTodos);
+    fetch(`http://127.0.0.1:8000/schedule/api/delete/${id}`, {
+    method: 'DELETE',
+  })
+    .then(response => {
+      if (response.status === 204) {
+        console.log(`Todo with id ${id} deleted successfully.`);
+        // Remove the deleted todo from the state
+        const updatedTodos = todos.filter(todo => todo.id !== id);
+        settodos(updatedTodos);
+      } else {
+        console.log(`Failed to delete todo with id ${id}.`);
+      }
+    })
+    .catch(error => console.log(error));
   }
 
   function handleReschedule(id){
