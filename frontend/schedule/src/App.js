@@ -61,15 +61,31 @@ function App() {
     // settodos([...todos, newTodo]);
   }
 // TODO debug toggleCompleteBtn and related BTN HTML in Tod.js
-  function toggleCompleteBtn (id){
-    const updateSchedule = todos.map((schedule) => {
-      if (id === schedule.id){
-        return {...schedule, isCompleted: !schedule.isCompleted};
-      }
-      return schedule;
-    });
-    settodos(updateSchedule);
-  }
+  function toggleCompleteBtn(id) {
+  const updateSchedule = todos.map((schedule) => {
+    if (id === schedule.id) {
+      console.log(schedule.id)
+      fetch(`http://127.0.0.1:8000/schedule/api/${schedule.id}`, {
+        method: 'PUT',  // Use PUT instead of POST to update the existing item
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          isCompleted: !schedule.isCompleted,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          // console.log(data)
+          readApi();  // Fetch the updated data after successful update
+        })
+        .catch(error => console.log(error));
+    }
+    return schedule;
+  });
+  settodos(updateSchedule);
+}
+
     // Get the current date in ISO string format
   const currentDate = new Date().toISOString().slice(0, 10);
   const filerActive = todos.filter(todo => todo.isCompleted === false && todo.dueDate > currentDate);
