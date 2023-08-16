@@ -86,6 +86,14 @@ function App() {
   settodos(updateSchedule);
 }
 
+  function handleDelete(){
+    console.log("click to delete");
+  }
+
+  function handleReschedule(){
+    console.log('Click to reschedule');
+  }
+
     // Get the current date in ISO string format
   const currentDate = new Date().toISOString().slice(0, 10);
   const filerActive = todos.filter(todo => todo.isCompleted === false && todo.dueDate > currentDate);
@@ -115,6 +123,7 @@ function App() {
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
                   toggleCompleteBtn={toggleCompleteBtn}
+                  currentDate={currentDate}
                   />
               </div>
               
@@ -129,6 +138,7 @@ function App() {
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
                   toggleCompleteBtn={toggleCompleteBtn}
+                  currentDate={currentDate}
                   />
               </div>))}
             {isDisplayed === 'duePast' && filerDueDate.map(todo => (
@@ -140,6 +150,9 @@ function App() {
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
                   toggleCompleteBtn={toggleCompleteBtn}
+                  handleDelete={handleDelete}
+                  handleReschedule={handleReschedule}
+                  currentDate={currentDate}
                   />
               </div>))}
           </ul>
