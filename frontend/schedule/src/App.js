@@ -86,11 +86,13 @@ function App() {
   settodos(updateSchedule);
 }
 
-  function handleDelete(){
+  function handleDelete(id){
     console.log("click to delete");
+    const RemainingTodos = todos.filter((todo) => id !== todo.id);
+    settodos(RemainingTodos);
   }
 
-  function handleReschedule(){
+  function handleReschedule(id){
     console.log('Click to reschedule');
   }
 
