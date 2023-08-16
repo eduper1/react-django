@@ -33,7 +33,7 @@ def update_schedule(request, schedule_id):
         
         # Update the isCompleted field of the schedule object
         schedule.isCompleted = is_completed
-        schedule.save()
+        # schedule.save()
        
         schedule_serializer = TodoSerializer(schedule, data={'isCompleted': is_completed}, partial=True)
         if schedule_serializer.is_valid():
@@ -46,3 +46,10 @@ def update_schedule(request, schedule_id):
         # todos = TodoItem.objects.all()
         serializer = TodoSerializer(schedule)
         return Response(serializer.data)
+
+@api_view(['DELETE'])
+def delete_schedule(request, id):
+    schedule = get_object_or_404(TodoItem, pk=id)
+    if request.method == 'DELETE':
+        schedule.delete()
+        return Response({"message": f"Schedule with ID {id} has been deleted."}, status=204)
