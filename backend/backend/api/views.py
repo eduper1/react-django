@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from schedule.models import TodoItem   
 from .serializers import TodoSerializer
+from django.shortcuts import get_object_or_404
 
 
 @api_view(['GET', 'POST'])
@@ -16,10 +17,32 @@ def todo_list(request):
 
     elif request.method == 'POST':
         serializer = TodoSerializer(data=request.data)
-        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
-        else:
-            print(serializer.errors)  # Log validation errors
-            return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=400)
+    
+@api_view(['PUT','GET'])
+def update_schedule(request, schedule_id):
+    # Query for requested schedule
+    schedule = get_object_or_404(TodoItem, pk=schedule_id)
+    print(schedule)
+    if request.method == 'PUT':
+        # Extract the isCompleted data from request.data
+        is_completed = request.data.get('isCompleted')
+        
+        # Update the isCompleted field of the schedule object
+        schedule.isCompleted = is_completed
+        schedule.save()
+       
+        schedule_serializer = TodoSerializer(schedule, data={'isCompleted': is_completed}, partial=True)
+        if schedule_serializer.is_valid():
+            schedule_serializer.save()
+            return Response({"message": "isCompleted field updated successfully."}, status=200)
+        return Response(schedule_serializer.errors, status=400)
+        # return Response({"message": "isCompleted field updated successfully."}, status=200)
+
+    elif request.method == 'GET':
+        # todos = TodoItem.objects.all()
+        serializer = TodoSerializer(schedule)
+        return Response(serializer.data)
