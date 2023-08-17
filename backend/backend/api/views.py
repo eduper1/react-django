@@ -30,17 +30,24 @@ def update_schedule(request, schedule_id):
     if request.method == 'PUT':
         # Extract the isCompleted data from request.data
         is_completed = request.data.get('isCompleted')
+        due_date = request.data.get('dueDate')
         
         # Update the isCompleted field of the schedule object
-        schedule.isCompleted = is_completed
-        # schedule.save()
-       
-        schedule_serializer = TodoSerializer(schedule, data={'isCompleted': is_completed}, partial=True)
-        if schedule_serializer.is_valid():
-            schedule_serializer.save()
-            return Response({"message": "isCompleted field updated successfully."}, status=200)
-        return Response(schedule_serializer.errors, status=400)
-        # return Response({"message": "isCompleted field updated successfully."}, status=200)
+        if is_completed is not None:
+            schedule.isCompleted = is_completed
+            schedule_serializer = TodoSerializer(schedule, data={'isCompleted': is_completed}, partial=True)
+            if schedule_serializer.is_valid():
+                schedule_serializer.save()
+                return Response({"message": "isCompleted field updated successfully."}, status=200)
+            return Response(schedule_serializer.errors, status=400)
+        
+        if due_date is not None:
+            schedule.dueDate = due_date
+            schedule_serializer = TodoSerializer(schedule, data={'dueDate': due_date}, partial=True)
+            if schedule_serializer.is_valid():
+                schedule_serializer.save()
+                return Response({"message":"dueDate field updated successfully"}, status=200)
+            return Response(schedule_serializer.errors, status=400)
 
     elif request.method == 'GET':
         # todos = TodoItem.objects.all()
