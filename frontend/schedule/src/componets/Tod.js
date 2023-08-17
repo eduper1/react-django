@@ -37,6 +37,12 @@ function Todo(props){
         <div className="card mb-3" key={props.id}>
           <div className="card-body">
             <h5 className="card-title">{props.title}</h5>
+            {props.reschedule_count > 0 && (
+            <button type="button" className="btn btn-primary">
+                Rescheduled: <span className="badge badge-light">{props.reschedule_count}</span>
+            </button>
+            // <p className="card-text">Reschedule Count: {props.reschedule_count}</p>
+            )}
             <p className="card-text">{props.description}</p>
             <p className="card-text">Due Date: {props.dueDate}</p>
             {!props.isCompleted && props.dueDate < props.currentDate ? (
