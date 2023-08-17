@@ -5,6 +5,25 @@ function Todo(props){
   const maxDate = new Date();
   maxDate.setDate(maxDate.getDate() + 10); // Add 10 days to the current date
   const maxDateString = maxDate.toISOString().slice(0, 10);
+  
+  // Convert the ISO timestamp to a JavaScript Date object
+  const createdAtDate = new Date(props.start);
+  const createdDueDate = new Date(props.dueDate);
+  // Format the date and time
+  const formattedCreatedAt = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+  }).format(createdAtDate);
+  const formattedDueDate = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(createdDueDate);
 
 
   const [showRescheduleForm, setShowRescheduleForm] = useState(false);
@@ -36,15 +55,17 @@ function Todo(props){
 
         <div className="card mb-3" key={props.id}>
           <div className="card-body">
-            <h5 className="card-title">{props.title}</h5>
+            <h5 className="card-title">{props.title}
+            <p>Created: {formattedCreatedAt}</p>
             {props.reschedule_count > 0 && (
             <button type="button" className="btn btn-primary">
-                Rescheduled: <span className="badge badge-light">{props.reschedule_count}</span>
+                Rescheduled: <span className="badge badge-info">{props.reschedule_count}</span>
             </button>
-            // <p className="card-text">Reschedule Count: {props.reschedule_count}</p>
+            
             )}
+            </h5>
             <p className="card-text">{props.description}</p>
-            <p className="card-text">Due Date: {props.dueDate}</p>
+            <p className="card-text">Due Date: {formattedDueDate}</p>
             {!props.isCompleted && props.dueDate < props.currentDate ? (
               <div className="d-flex justify-content-between" role="group" aria-label="scheduleStatus">
                 <button className="btn btn-warning" onClick={() => handleRescheduleDate()}>Reschedule</button>
