@@ -43,7 +43,8 @@ def update_schedule(request, schedule_id):
         
         if due_date is not None:
             schedule.dueDate = due_date
-            schedule_serializer = TodoSerializer(schedule, data={'dueDate': due_date}, partial=True)
+            schedule.reschedule_count += 1
+            schedule_serializer = TodoSerializer(schedule, data={'dueDate': due_date, 'reschedule_count': schedule.reschedule_count}, partial=True)
             if schedule_serializer.is_valid():
                 schedule_serializer.save()
                 return Response({"message":"dueDate field updated successfully"}, status=200)
