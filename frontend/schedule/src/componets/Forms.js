@@ -74,7 +74,7 @@ function Form(props){
                   <label htmlFor="dueDate">Due Date:</label>
                   <input type="date" name="date" value={FormData.date} className='form-control' id="dueDate" min={today} max={maxDateString} onChange={handleInputChanges} />
                 </div>
-                <button type="submit" className="btn btn-primary" >Submit</button>
+                <button type="submit" className="btn btn-primary mt-2" >Submit</button>
               </form>
             </div>
           </div>

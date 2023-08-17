@@ -55,15 +55,18 @@ function Todo(props){
 
         <div className="card mb-3" key={props.id}>
           <div className="card-body">
-            <h5 className="card-title">{props.title}
-            <p>Created: {formattedCreatedAt}</p>
+            <div className="card-title d-flex justify-content-between align-items-center">
+              <h5>
+              {props.title}
+            <p className="text-wrap font-monospace small text-center">Created: {formattedCreatedAt}</p>
+              </h5>
             {props.reschedule_count > 0 && (
-            <button type="button" className="btn btn-primary">
-                Rescheduled: <span className="badge badge-info">{props.reschedule_count}</span>
+            <button type="button" className="btn btn-dark btn-sm btn-outline-dark">
+                <span className="badge badge-primary">Rescheduled: {props.reschedule_count}</span>
             </button>
             
             )}
-            </h5>
+            </div>
             <p className="card-text">{props.description}</p>
             <p className="card-text">Due Date: {formattedDueDate}</p>
             {!props.isCompleted && props.dueDate < props.currentDate ? (
