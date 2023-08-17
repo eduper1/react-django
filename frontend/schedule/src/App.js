@@ -159,6 +159,7 @@ function App() {
                 <Todo
                   id={todo.id}
                   title={todo.title}
+                  reschedule_count={todo.reschedule_count}
                   description={todo.description}
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
@@ -174,6 +175,7 @@ function App() {
                 <Todo
                   id={todo.id}
                   title={todo.title}
+                  reschedule={todo.reschedule_count}
                   description={todo.description}
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
@@ -186,6 +188,7 @@ function App() {
                 <Todo
                   id={todo.id}
                   title={todo.title}
+                  reschedule={todo.reschedule_count}
                   description={todo.description}
                   dueDate={todo.dueDate}
                   isComplete={todo.isCompleted}
