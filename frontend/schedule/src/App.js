@@ -135,7 +135,9 @@ function App() {
   
 
     // Get the current date in ISO string format
-  const currentDate = new Date().toISOString().slice(0, 10);
+  const currentDate = new Date();
+  currentDate.setUTCHours(0, 0, 0, 0);
+  currentDate.toISOString().slice(0, 10);
   const filerActive = todos.filter(todo => todo.isCompleted === false && todo.dueDate > currentDate);
   const filerComplete = todos.filter(todo => todo.isCompleted === true);
   const filerDueDate = todos.filter(todo => todo.isCompleted === false && todo.dueDate < currentDate); 
