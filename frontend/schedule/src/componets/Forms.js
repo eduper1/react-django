@@ -2,15 +2,18 @@ import { useState } from "react";
 import React from "react";
 
 function Form(props){
-  const today = new Date().toISOString().slice(0, 10);
-  const maxDate = new Date();
-  maxDate.setDate(maxDate.getDate() + 10); // Add 10 days to the current date
-  const maxDateString = maxDate.toISOString().slice(0, 10);
+const today = new Date();
+today.setUTCHours(0, 0, 0, 0); // Set time to start of day in UTC
+
+const maxDate = new Date(today);
+maxDate.setUTCDate(maxDate.getUTCDate() + 10); // Add 10 days in UTC
+
+const maxDateString = maxDate.toISOString().slice(0, 10);
 
   const [FormData, setFormData] = useState({
     title:'',
     description:'',
-    date:today,
+    date:today.toISOString().slice(0, 10),
   });
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -30,7 +33,7 @@ function Form(props){
     setFormData({
       title: '',
       description: '',
-      date: today,
+      date: today.toISOString().slice(0, 10),
     });
     setIsFormSubmitted(true);
     // Reset success message after 2 seconds
@@ -72,7 +75,7 @@ function Form(props){
                 </div>
                 <div className="form-group">
                   <label htmlFor="dueDate">Due Date:</label>
-                  <input type="date" name="date" value={FormData.date} className='form-control' id="dueDate" min={today} max={maxDateString} onChange={handleInputChanges} />
+                  <input type="date" name="date" value={FormData.date} className='form-control' id="dueDate" min={today.toISOString().slice(0, 10)} max={maxDateString} onChange={handleInputChanges} />
                 </div>
                 <button type="submit" className="btn btn-primary mt-2" >Submit</button>
               </form>
